@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cal.css">
+    <title>Mese di Marzo</title>
+</head>
+<body>
+  <div class="content-wrapper">
+    <dialog id="eventDialog">
+      <form method="dialog">
+        <h2 id="dialogEventTitle"></h2>
+        <p id="dialogEventDate"></p>
+        <p id="dialogEventLocation"></p>
+        <ul id="dialogEventParticipants"></ul>
+        <button value="close">Close</button>
+      </form>
+    </dialog>  
+  <main class="princ">
+    <h2 style="color: white;">March 2024</h2>
+    <div class="linea"></div>
+    <p>NOTES:</p>
+    <textarea rows="15" cols="20"></textarea>
+    <div class="lineafine"></div>
+  </main>
+  <main>
+    <div class="calendar">
+      <div class="month-indicator">
+        <h2> March </h2>
+      </div>
+      <div class="lineab"></div>
+      <div class="day-of-week">
+        <div>Su</div>
+        <div>Mo</div>
+        <div>Tu</div>
+        <div>We</div>
+        <div>Th</div>
+        <div>Fr</div>
+        <div>Sa</div>
+      </div>
+      <div class="date-grid">
+        <button>
+          <time datetime="2024-03-01">1</time>
+        </button>
+        <button>
+          <time datetime="2024-03-02">2</time>
+        </button>
+        <button>
+          <time datetime="2024-03-03">3</time>
+        </button>
+        <button>
+          <time datetime="2024-03-04">4</time>
+        </button>
+        <button>
+          <time datetime="2024-03-05">5</time>
+        </button>
+        <button>
+          <time datetime="2024-03-06">6</time>
+        </button>
+        <button>
+          <time datetime="2024-03-07">7</time>
+        </button>
+        <button>
+          <time datetime="2024-03-08">8</time>
+        </button>
+        <button>
+          <time datetime="2024-03-09">9</time>
+        </button>
+        <button>
+          <time datetime="2024-03-10">10</time>
+        </button>
+        <button>
+          <time datetime="2024-03-11">11</time>
+        </button>
+        <button>
+          <time datetime="2024-03-12">12</time>
+        </button>
+        <button>
+          <time datetime="2024-03-13">13</time>
+        </button>
+        <button>
+          <time datetime="2024-03-14">14</time>
+        </button>
+        <button>
+          <time datetime="2024-03-15">15</time>
+        </button>
+        <button>
+          <time datetime="2024-03-16">16</time>
+        </button>
+        <button>
+          <time datetime="2024-03-17">17</time>
+        </button>
+        <button>
+          <time datetime="2024-03-18">18</time>
+        </button>
+        <button>
+          <time datetime="2024-03-19">19</time>
+        </button>
+        <button>
+          <time datetime="2024-03-20">20</time>
+        </button>
+        <button>
+          <time datetime="2024-03-21">21</time>
+        </button>
+        <button>
+          <time datetime="2024-03-22">22</time>
+        </button>
+        <button>
+          <time datetime="2024-03-23">23</time>
+        </button>
+        <button>
+          <time datetime="2024-03-24">24</time>
+        </button>
+        <button>
+          <time datetime="2024-03-25">25</time>
+        </button>
+        <button>
+          <time datetime="2024-03-26">26</time>
+        </button>
+        <button>
+          <time datetime="2024-03-27">27</time>
+        </button>
+        <button>
+          <time datetime="2024-03-28">28</time>
+        </button>
+        <button>
+          <time datetime="2024-03-29">29</time>
+        </button>
+        <button>
+          <time datetime="2024-03-30">30</time>
+        </button>
+        <button>
+          <time datetime="2024-03-31">31</time>
+        </button>
+      </div>
+      <div class="lineabfine"></div>
+    </div>
+  </main>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const dialog = document.getElementById("eventDialog");
+
+      fetch('https://raw.githubusercontent.com/aschimmenti/techweb-test/main/db.json')
+        .then(response => response.json())
+        .then(events => {
+          const dateButtons = document.querySelectorAll('.date-grid button');
+          
+          dateButtons.forEach(button => {
+            const date = button.querySelector('time').getAttribute('datetime');
+            const event = events.find(event => event.date === date);
+            
+            if (event) {
+              button.classList.add('has-event');
+              button.addEventListener('click', function() {
+                document.getElementById('dialogEventDate').innerHTML=event.date
+                document.getElementById('dialogEventTitle').innerHTML=event.description
+                document.getElementById('dialogEventLocation').innerHTML=event.location
+                const participantsUl=document.getElementById('dialogEventParticipants');
+                participantsUl.innerHTML = '';
+                event.participants.forEach(participant => {
+                  let li = document.createElement('li');
+                  li.innerHTML = participant;
+                  participantsUl.appendChild(li);
+                })
+                dialog.showModal();
+              });
+            }
+          });
+        })
+        .catch(error => console.error('Error loading events:', error));
+    
+      // Close the dialog when the form is submitted/closed
+      dialog.querySelector('form').onsubmit = function() {
+        dialog.close();
+      };
+    });
+    </script>  
+</body>
+</html>
