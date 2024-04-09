@@ -1,0 +1,45 @@
+.volume-slider {
+    width: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease, width 0.5s ease;
+}
+
+.volume-control-container:hover .volume-slider {
+    width: 100%;
+    /* Adjust based on the desired width when visible */
+    opacity: 1;
+}
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+body{
+    background-attachment: fixed;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display-4{
+    color: white;
+}
+
+p{
+    color: white;
+}
+
+
+main{
+    position: absolute;
+    margin-top: 40px;
+    height: 500px;
+    width: 800px;
+    padding: 1.5em;
+    text-align: center;
+    background-color: #ffffff;
+    font-family: "Open Sans", sans-serif;
+    background-color: black;
+    border-radius: 8px;
+}

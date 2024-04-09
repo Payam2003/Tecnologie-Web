@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="styleSheet" href="pomodoro.css">
+    <title>Pomodoro Study Timer</title>
+  </head>
+  <body>
+    <main id="word">
+      <p>S</p>
+      <p>E</p>
+      <p>S</p>
+      <p>S</p>
+      <p>I</p>
+      <p>O</p>
+      <p>N</p>
+      <p>E</p>
+    </main>
+    <main id="bury">
+      <label>Tempo di studio: <input type="number" id="study"></label>
+      <label>Tempo di pausa: <input type="number" id="pause"></label>
+      <label>Questo per quante volte? <input type="number" id="tot"></label>
+      <p></p>
+      <button type="submit" id="time">Start</button>
+    </main>
+    <main id="body">
+      <div id="countdown">00:00</div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div id="countpause">00:00</div>
+      <div class="progress-containerr">
+        <div class="progress-barr" id="progressBarr"></div>
+      </div>
+      <script src="pom.js" charset="utf-8">
+      </script>
+    </main>
+  </body>
+</html>
